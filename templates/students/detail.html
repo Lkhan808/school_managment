@@ -1,0 +1,28 @@
+{% extends 'layouts/index.html' %}
+<style type="text/css">
+    .student-block{
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        padding: 8px;
+        background-color: wheat;
+    }
+</style>
+{% block content %}
+    <div class="student-block">
+        {% if student.photo %}
+            <img style="width: 500px;height:500px" src="/media/{{ student.photo }}" alt="">
+        {% else %}
+            <img src="https://www.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
+                 alt="">
+        {% endif %}
+        <div class="info">
+            <h1>{{ student.full_name }}</h1>
+            <h1>{{ student.grade }}</h1>
+            <h2>{{ student.birth_date }}</h2>
+            <h2>{{ student.gender }}</h2>
+            <h2>{{ student.address }}</h2>
+            <h2>{{ student.email }}</h2>
+        </div>
+    </div>
+{% endblock %}

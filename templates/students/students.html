@@ -1,0 +1,10 @@
+{% extends 'layouts/index.html' %}
+{% block content %}
+    <div style="justify-content: left ; flex-wrap: wrap">
+        {% for student in students %}
+            <img alt="" src=""/>
+            <h5>{{ student.full_name }}</h5>
+            <a href="/students/{{ student.id }}/" class="card-link">More</a>
+        {% endfor %}
+    </div>>
+{% endblock %}
