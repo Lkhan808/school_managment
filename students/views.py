@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from students.models import Student
-from students.forms import StudentCreateForm
+from students.forms import StudentCreateForm, StudentEditForm
 
 
 def main_page_view(request):
@@ -63,3 +63,24 @@ def student_create_view(request):
             return redirect('/students/')
         return render(request, 'students/create.html', context={'form': form})
 
+
+def edit_student(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+
+    if request.method == 'POST':
+        form = StudentEditForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/students/{student.id}', student_id=student_id)
+    else:
+        form = StudentEditForm(instance=student)
+
+    return render(request, 'students/edit.html', {'form': form})
+
+
+def delete_student_view(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    if request.method == 'POST':
+        student.delete()
+        return redirect('/students/')
+    return render(request, 'students/delete.html', {'student': student})

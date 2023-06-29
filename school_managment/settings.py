@@ -1,5 +1,10 @@
 import os
 
+import django
+
+django.setup()
+from students.models import Teacher
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'django-insecure-!x$9pb0qd#&phspo^x$(_c^68k2_xch^(sn9tp0_apym+)mm^j'
@@ -16,7 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'students'
+    'students',
+    'students.models.Teacher'
 ]
 
 MIDDLEWARE = [
@@ -88,5 +94,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'students.models.Teacher'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

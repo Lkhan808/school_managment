@@ -7,14 +7,6 @@ from django.urls import reverse
 class Teacher(AbstractUser):
     phone_number = models.CharField(max_length=20)
     subject_name = models.CharField(max_length=100)
-    groups = models.ManyToManyField(Group, blank=True,
-                                    help_text='The groups this user belongs to. A user will get all permissions '
-                                              'granted to each of their groups.')
-    user_permissions = models.ManyToManyField(Permission, blank=True, verbose_name='user permissions',
-                                              help_text='Specific permissions for this user.')
-
-    class Meta(AbstractUser.Meta):
-        swappable = 'AUTH_USER_MODEL'
 
     def __str__(self):
         return self.username

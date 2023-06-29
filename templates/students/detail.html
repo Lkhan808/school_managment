@@ -24,5 +24,8 @@
             <h2>{{ student.address }}</h2>
             <h2>{{ student.email }}</h2>
         </div>
+    <a href="/student/{{ student.id }}/edit/">Edit Student</a>
+
+    <a href="/students/{{ student.id }}/delete/">Delete Student</a>
     </div>
 {% endblock %}
